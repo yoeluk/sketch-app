@@ -1,4 +1,5 @@
 import org.scalajs.dom
+import org.scalajs.dom.html
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSName
@@ -9,7 +10,6 @@ import scala.scalajs.js.annotation.JSName
 
 package object paperjs {
   import Items._,Basic._,Paths._,Styling.Color,Projects._,Tools._
-  private[paperjs] implicit def tuples2JsArray(xs: List[Double]): js.Array[Double] = js.Array(xs: _*)
   trait HitResult extends js.Object {
     @JSName("type")
     val hitType: String = js.native
@@ -65,4 +65,26 @@ package object paperjs {
     var onMouseUp: js.ThisFunction1[Item, ToolEvent, Unit] = js.native
     var onMouseMove: js.ThisFunction1[Item, ToolEvent, Unit] = js.native
   }
+  implicit class PaperCompanionOps(val self: PaperScope.type) extends AnyVal {
+    def apply(): PaperScope = new PaperScope()
+  }
+  @JSName("PaperScope")
+  class PaperScope extends js.Object {
+    def setup(canvas: html.Canvas): Unit = js.native
+    def activate(): Unit = js.native
+    def view: View = js.native
+    def version: String = js.native
+    var settings: js.Dynamic = js.native
+    def project: Project = js.native
+    def projects: js.Array[Project] = js.native
+    def tool: Tool = js.native
+    def tools: js.Array[Tool] = js.native
+  }
+
+  object PaperScope extends js.Object {
+    def get(id: Int): PaperScope = js.native
+  }
+
+  @JSName("paper")
+  object Paper extends PaperScope
 }

@@ -4,7 +4,7 @@ package Items
 import org.scalajs.dom
 
 import scala.scalajs.js
-import Basic._, Styling._,Projects._
+import Basic._, Styling._,Projects._,Tools.ToolEvent
 
 import scala.scalajs.js.annotation.JSName
 
@@ -73,10 +73,10 @@ trait Item extends EventHandling[Item] with MouseHandler {
   var fillColor: Color = js.native
   var selectedColor: Color = js.native
   var onFrame: js.Function1[dom.Event, Unit] => Unit = js.native
-  var onClick: js.ThisFunction1[Item, dom.MouseEvent, Unit] = js.native
-  var onDoubleClick: js.ThisFunction1[Item, dom.MouseEvent, Unit] = js.native
-  var onMouseEnter: js.ThisFunction1[Item, dom.MouseEvent, Unit] = js.native
-  var onMouseLeave: js.ThisFunction1[Item, dom.MouseEvent, Unit] = js.native
+  var onClick: js.ThisFunction1[Item, ToolEvent, Unit] = js.native
+  var onDoubleClick: js.ThisFunction1[Item, ToolEvent, Unit] = js.native
+  var onMouseEnter: js.ThisFunction1[Item, ToolEvent, Unit] = js.native
+  var onMouseLeave: js.ThisFunction1[Item, ToolEvent, Unit] = js.native
 
   // Methods
 

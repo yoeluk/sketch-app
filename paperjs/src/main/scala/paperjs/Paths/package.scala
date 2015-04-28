@@ -1,7 +1,5 @@
 package paperjs
 
-import paperjs.Basic.{Size, Point}
-
 import scala.scalajs.js
 
 /**

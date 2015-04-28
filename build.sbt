@@ -1,6 +1,3 @@
-//import SonatypeKeys._
-
-//sonatypeSettings
 
 workbenchSettings
 
@@ -23,7 +20,7 @@ lazy val commonSettings = Seq(
 
 lazy val paperjs = project.settings(commonSettings: _*).settings(
   version := "0.1-SNAPSHOT",
-  name := "Scala-Paper-js",
+  name := "paper-scala-js",
   persistLauncher in Compile := true,
   persistLauncher in Test := false
 ).enablePlugins(ScalaJSPlugin)

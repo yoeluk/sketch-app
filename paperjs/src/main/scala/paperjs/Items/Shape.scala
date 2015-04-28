@@ -1,8 +1,6 @@
 package paperjs
 package Items
 
-import paperjs.Styling.Color
-
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSName
 import Basic._

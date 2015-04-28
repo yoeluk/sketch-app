@@ -17,12 +17,8 @@
     window.onload = function() {
         // Get a reference to the canvas object
         var canvas = document.getElementById('canvas');
-        // Create an empty project and a view for the canvas:
-        paper.setup(canvas);
-        // create a new Tool()
-        new paper.Tool();
-        // call scalajs entry point
-        sketcher.Sketcher().main();
+        // Call the scalajs app entry point
+        sketcher.Sketcher().main(canvas);
     }
 </script>
 </body>

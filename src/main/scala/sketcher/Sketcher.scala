@@ -1,33 +1,34 @@
 package sketcher
 
-import org.scalajs.dom
-import scala.scalajs.js
+import org.scalajs.dom.html
 import scala.scalajs.js.annotation.JSExport
-import js.Dynamic.{global => g}
 import paperjs._
-import Basic._,Paths._,Items._,Styling._,Tools._,Projects._
+import Basic._,Paths._,Items._,Styling._,Tools._
 
 @JSExport
 object Sketcher {
   @JSExport
-  def main(): Unit = {
+  def main(canvas: html.Canvas): Unit = {
 
-    val circle = Shape.Circle(center = Point(200,200), radius = 50)
-
-    circle.fillColor = Color("red")
-    circle.strokeWidth = 3
-
-    circle.onMouseEnter = (item: Item, e: dom.MouseEvent) => {
-      item.strokeColor = Color("green")
-    }
+    Paper.setup(canvas)
+    val tool = Tool()
 
     val newColor = Color("black")
 
-    g.paper.tool.onMouseMove = (e: ToolEvent) => {
+    tool.onMouseMove = (e: ToolEvent) => {
       val path = Path.Circle(e.point, radius = 15)
       path.fillColor = newColor
       path.removeOnMove()
     }
-    g.paper.view.asInstanceOf[View].update()
+
+    val circle = Shape.Circle(Point(200,200), radius = 50)
+
+    circle.fillColor = Color("red")
+    circle.strokeWidth = 3
+
+    circle.onMouseEnter = (item: Item, e: ToolEvent) =>
+      item.strokeColor = Color("green")
+
+    Paper.view.update()
   }
 }
