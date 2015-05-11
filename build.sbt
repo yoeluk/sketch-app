@@ -1,6 +1,6 @@
 enablePlugins(ScalaJSPlugin)
 scalaVersion := "2.11.6"
-version := "0.1-SNAPSHOT"
+version := "0.1.2-SNAPSHOT"
 name := "Sketcher"
 resolvers += "Sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
 scalacOptions ++= Seq(
@@ -15,6 +15,7 @@ persistLauncher in Compile := false
 persistLauncher in Test := false
 skip in packageJSDependencies := false
 libraryDependencies ++= Seq(
-  "com.github.yoeluk" %%% "paper-scala-js" % "0.1.2-SNAPSHOT"
+  "com.github.yoeluk" %%% "paper-scala-js" % "0.1.3-SNAPSHOT",
+  "com.lihaoyi" %%% "scalarx" % "0.2.8"
 )
 jsDependencies += "org.webjars" % "paperjs" % "0.9.22" / "paper-full.min.js" commonJSName "paper"
