@@ -1,10 +1,11 @@
 package sketcher
 
 import org.scalajs.dom.html
-import rx._
+import paperjs.Projects.{View, FrameEvent}
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExport
 import paperjs._
+import rx._
 import Basic._,Paths._,Styling._,Tools._
 
 @JSExport
@@ -36,12 +37,12 @@ object Sketcher {
       width() = Paper.view.size.width
       height() = Paper.view.size.height / 2
       path.segments = js.Array[Segment]()
-      path.addPoint(Paper.view.bounds.bottomLeft)
+      path.add(Paper.view.bounds.bottomLeft)
       for (i <- 1 to points - 1) {
         val point = Point(width() / points * i, center.y)
-        path.addPoint(point)
+        path.add(point)
       }
-      path.addPoint(Paper.view.bounds.bottomRight)
+      path.add(Paper.view.bounds.bottomRight)
       path.fullySelected = true
     }
 
@@ -67,7 +68,8 @@ object Sketcher {
       }
     }
 
-    Paper.view.onFrame = (event: FrameEvent) => {
+    Paper.view.onFrame = (view: View, event: FrameEvent) => {
+      println(event)
       eventCount() = event.count
     }
 
@@ -80,7 +82,7 @@ object Sketcher {
       smooth() = !sm
     }
 
-    Paper.view.onResize = (event: FrameEvent) => {
+    Paper.view.onResize = (view: View, event: FrameEvent) => {
       initializePath()
     }
   }
